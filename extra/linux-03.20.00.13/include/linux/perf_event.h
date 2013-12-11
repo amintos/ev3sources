@@ -647,6 +647,9 @@ struct perf_event {
 	int				pending_kill;
 	int				pending_disable;
 	struct perf_pending_entry	pending;
+#ifdef CONFIG_PREEMPT_RT
+	struct perf_pending_entry	pending_softirq;
+#endif
 
 	atomic_t			event_limit;
 
@@ -755,6 +758,7 @@ extern void perf_event_exit_task(struct task_struct *child);
 extern void perf_event_free_task(struct task_struct *task);
 extern void set_perf_event_pending(void);
 extern void perf_event_do_pending(void);
+extern void perf_event_do_pending_softirq(void);
 extern void perf_event_print_debug(void);
 extern void __perf_disable(void);
 extern bool __perf_enable(void);
@@ -880,6 +884,7 @@ static inline int perf_event_init_task(struct task_struct *child)	{ return 0; }
 static inline void perf_event_exit_task(struct task_struct *child)	{ }
 static inline void perf_event_free_task(struct task_struct *task)	{ }
 static inline void perf_event_do_pending(void)				{ }
+static inline void perf_event_do_pending_softirq(void)		{ }
 static inline void perf_event_print_debug(void)				{ }
 static inline void perf_disable(void)					{ }
 static inline void perf_enable(void)					{ }

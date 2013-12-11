@@ -1,0 +1,95 @@
+--- kernel/sched.c
++++ kernel/sched.c
+@@ -2765,16 +2915,24 @@
+ 	if (!rt_prio(p->prio))
+ 		p->sched_class = &fair_sched_class;
+ 
++	/*
++	 * task_fork() and set_task_cpu() must be called with
++	 * preemption disabled
++	 */
++	cpu = get_cpu();
++
+ 	if (p->sched_class->task_fork)
+ 		p->sched_class->task_fork(p);
+ 
+ 	set_task_cpu(p, cpu);
+ 
++	put_cpu();
++
+ #if defined(CONFIG_SCHEDSTATS) || defined(CONFIG_TASK_DELAY_ACCT)
+ 	if (likely(sched_info_on()))
+ 		memset(&p->sched_info, 0, sizeof(p->sched_info));
+ #endif
+-#if defined(CONFIG_SMP) && defined(__ARCH_WANT_UNLOCKED_CTXSW)
++#if defined(CONFIG_SMP)
+ 	p->oncpu = 0;
+ #endif
+ #ifdef CONFIG_PREEMPT
+@@ -5765,24 +6002,29 @@
+ 		 */
+ 		cpu = smp_processor_id();
+ 		rq = cpu_rq(cpu);
+-	} else
+-		raw_spin_unlock_irq(&rq->lock);
++		__preempt_enable_no_resched();
++	} else {
++		__preempt_enable_no_resched();
++		raw_spin_unlock(&rq->lock);
++	}
+ 
+ 	post_schedule(rq);
+ 
+-	if (unlikely(reacquire_kernel_lock(current) < 0)) {
+-		prev = rq->curr;
+-		switch_count = &prev->nivcsw;
+-		goto need_resched_nonpreemptible;
+-	}
++	reacquire_kernel_lock(current);
++}
+ 
+-	preempt_enable_no_resched();
++asmlinkage void __sched schedule(void)
++{
++need_resched:
++	local_irq_disable();
++	__schedule();
++	local_irq_enable();
+ 	if (need_resched())
+ 		goto need_resched;
+ }
+ EXPORT_SYMBOL(schedule);
+ 
+-#ifdef CONFIG_MUTEX_SPIN_ON_OWNER
++#if defined(CONFIG_MUTEX_SPIN_ON_OWNER) && !defined(CONFIG_PREEMPT_RT)
+ /*
+  * Look out! "owner" is an entirely speculative pointer
+  * access and not reliable.
+@@ -7559,27 +7986,8 @@
+ 	struct rq *rq;
+ 	int ret = 0;
+ 
+-	/*
+-	 * Since we rely on wake-ups to migrate sleeping tasks, don't change
+-	 * the ->cpus_allowed mask from under waking tasks, which would be
+-	 * possible when we change rq->lock in ttwu(), so synchronize against
+-	 * TASK_WAKING to avoid that.
+-	 *
+-	 * Make an exception for freshly cloned tasks, since cpuset namespaces
+-	 * might move the task about, we have to validate the target in
+-	 * wake_up_new_task() anyway since the cpu might have gone away.
+-	 */
+-again:
+-	while (p->state == TASK_WAKING && !(p->flags & PF_STARTING))
+-		cpu_relax();
+-
+ 	rq = task_rq_lock(p, &flags);
+ 
+-	if (p->state == TASK_WAKING && !(p->flags & PF_STARTING)) {
+-		task_rq_unlock(rq, &flags);
+-		goto again;
+-	}
+-
+ 	if (!cpumask_intersects(new_mask, cpu_active_mask)) {
+ 		ret = -EINVAL;
+ 		goto out;

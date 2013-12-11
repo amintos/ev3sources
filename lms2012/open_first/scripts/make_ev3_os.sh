@@ -42,7 +42,7 @@ find '/mnt/tmpdrv_ud/apps/' -type d | xargs -i  mkdir {}/CVS
 rm -r /mnt/tmpdrv_ud/apps/CVS
 mkdir /mnt/tmpdrv_ud/prjs/BrkProg_SAVE/CVS
 
-#rm $PATH5/rc5.d/S99lms
+rm $PATH5/rc5.d/S99lms
 ln -s /mnt/ramdisk/apps/ $PATH4/apps
 ln -s /mnt/ramdisk/prjs/ $PATH4/prjs
 ln -s /mnt/ramdisk/settings/ $PATH4/sys/settings

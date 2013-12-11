@@ -1038,7 +1038,7 @@ int __devinit omapl_pru_suart_probe(struct platform_device *pdev)
 		soft_uart->port[i].serial_out = NULL;
 		/* SSC uart_add_one_port(&pru_suart_reg, &soft_uart->port[i]); */
 
-		init_MUTEX(&soft_uart->port_sem[i]);
+		sema_init(&soft_uart->port_sem[i], 1);
 	}
 	platform_set_drvdata(pdev, &soft_uart->port[0]);
 

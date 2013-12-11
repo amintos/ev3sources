@@ -985,7 +985,7 @@ static int fb_suspend(struct platform_device *dev, pm_message_t state)
 	unsigned long timeo = jiffies + msecs_to_jiffies(5000);
 	u32 stat;
 
-	acquire_console_sem();
+	acquire_console_mutex();
 
 	if (par->panel_power_ctrl)
 		par->panel_power_ctrl(0);
@@ -1007,7 +1007,7 @@ static int fb_suspend(struct platform_device *dev, pm_message_t state)
 	}
 
 	clk_disable(par->lcdc_clk);
-	release_console_sem();
+	release_console_mutex();
 
 	return 0;
 }
@@ -1016,7 +1016,7 @@ static int fb_resume(struct platform_device *dev)
 	struct fb_info *info = platform_get_drvdata(dev);
 	struct da8xx_fb_par *par = info->par;
 
-	acquire_console_sem();
+	acquire_console_mutex();
 
 	clk_enable(par->lcdc_clk);
 
@@ -1026,7 +1026,7 @@ static int fb_resume(struct platform_device *dev)
 		par->panel_power_ctrl(1);
 
 	fb_set_suspend(info, 0);
-	release_console_sem();
+	release_console_mutex();
 
 	return 0;
 }

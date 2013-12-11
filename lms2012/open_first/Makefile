@@ -119,6 +119,16 @@ doc.clean:
 .PHONY: doc doc.view doc.clean
 
 #
+# Install
+#
+
+install:
+	./mounty.sh; \
+	sudo ./make_image.sh; \
+	sudo ./update_sdcard.sh; \
+	./umounty.sh;
+
+#
 # Misc.
 #
 
@@ -130,6 +140,7 @@ help:
 	@echo ' kernel: to build Linux kernel'
 	@echo ' u-boot: to build u-Boot'
 	@echo ' doc: to build documentation'
+	@echo ' install: to write to the sdcard specified via [u]mounty'
 	@echo
 	@echo 'Execute "make doc.view" to view the documentation in a web'
 	@echo 'browser'

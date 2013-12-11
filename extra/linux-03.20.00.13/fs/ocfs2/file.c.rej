@@ -1,0 +1,11 @@
+--- fs/ocfs2/file.c
++++ fs/ocfs2/file.c
+@@ -2247,7 +2247,7 @@
+ 
+ bail:
+ 	if (have_alloc_sem)
+-		up_read(&inode->i_alloc_sem);
++		anon_up_read(&inode->i_alloc_sem);
+ 	if (rw_level != -1)
+ 		ocfs2_rw_unlock(inode, rw_level);
+ 	mlog_exit(ret);

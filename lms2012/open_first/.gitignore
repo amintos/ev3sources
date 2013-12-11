@@ -2,3 +2,4 @@ uBoot
 uImage
 .path-check
 .mkimage-check
+*.bin
