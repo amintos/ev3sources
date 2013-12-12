@@ -12,6 +12,13 @@ default: help
 include rules.mk
 
 #
+# Test programs
+#
+
+test:
+	$(MAKE) -I=$(KERNEL)/usr/include -o test ./hello_world/foo.c -lrt
+
+#
 # lms2012 program.
 #
 
