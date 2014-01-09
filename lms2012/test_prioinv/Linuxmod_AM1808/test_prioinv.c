@@ -40,7 +40,7 @@ int threadLow_fn(void* params) {
         int now;
 
         priorityLow.sched_priority = 1;
-	sched_setscheduler(threadLow, SCHED_FIFO, &priorityLow); 
+	sched_setscheduler(threadLow, SCHED_NORMAL, &priorityLow); 
 
         /* Waiting to be allowed to start */
         if(down_interruptible(&lowGo)) {
@@ -84,7 +84,7 @@ int threadMiddle_fn(void* params) {
         int now;
 
         priorityMiddle.sched_priority = 25;
-	sched_setscheduler(threadMiddle, SCHED_FIFO, &priorityMiddle); 
+	sched_setscheduler(threadMiddle, SCHED_NORMAL, &priorityMiddle); 
 
 	/* Show I'm ready */
         up(&midReady);
@@ -109,7 +109,7 @@ int threadHigh_fn(void* params) {
 	int now;
 
         priorityHigh.sched_priority = 50;
-	sched_setscheduler(threadHigh, SCHED_FIFO, &priorityHigh); 
+	sched_setscheduler(threadHigh, SCHED_NORMAL, &priorityHigh); 
 
 	/* Show I'm ready */
         up(&highReady);
