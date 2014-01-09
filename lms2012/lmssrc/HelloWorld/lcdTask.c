@@ -232,10 +232,12 @@ int main(int argc, char* argv[])
     /* Image file line length in bytes */
     fll = (var.xres >> 3) + 1;
 
+    /* MMap LCD */
     dbuf = (unsigned char *)mmap(0, var.yres * dll, PROT_WRITE | PROT_READ, MAP_SHARED, lcdFile, 0);
     if (dbuf == MAP_FAILED) printf("ERROR MMAP LCD!");
     printf("checkpoint after initiating lcd\n");
 
+    /* Initialize GoL fields */
     unsigned long round = 0;
     LCD field0 = {0};
     LCD field1  = {0};
@@ -252,6 +254,7 @@ int main(int argc, char* argv[])
 
     printf("checkpoint after writing lcd\n");
 
+    int cellCount; 
     /* Pre-fault our stack */
     stack_prefault();
 
@@ -265,23 +268,40 @@ int main(int argc, char* argv[])
         /* wait until next shot */
         clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
 
-        if(round % 50 == 0) {
-            // INITIALIZE!
+        if(round == 250) {
             round = 0;
-            printf("Refresh\n");
             for(i = 0; i < LCD_BUFFER_SIZE; i++) {
                 field0.Lcd[i] = rand() % 256;
             }
-            dLcdExec(&field0);
+        } else if (round == 50) {
+            for(i = 0; i < LCD_BUFFER_SIZE; i++) {
+                field0.Lcd[i] = 0;
+            }
+
+            drawPixel(field0.Lcd, 1, 80, 70);   
+            drawPixel(field0.Lcd, 1, 82, 70);   
+            drawPixel(field0.Lcd, 1, 82, 69);   
+            drawPixel(field0.Lcd, 1, 84, 68);   
+            drawPixel(field0.Lcd, 1, 84, 67);   
+            drawPixel(field0.Lcd, 1, 84, 66);   
+
+            drawPixel(field0.Lcd, 1, 86, 67);   
+            drawPixel(field0.Lcd, 1, 86, 66);   
+            drawPixel(field0.Lcd, 1, 87, 66);   
+            drawPixel(field0.Lcd, 1, 86, 65);   
         }
+
         printf("New round %d\n", round);
         srcField = (round % 2 == 0) ? &field0 : &field1; 
         destField = (round % 2 == 1) ? &field0 : &field1; 
         signed short x,y;
         for(x = 0; x < LCD_WIDTH; x++) {
             for(y = 0; y < LCD_HEIGHT; y++) {
-                if(countNeighbors(srcField->Lcd, x, y) == 3) {
+                cellCount = countNeighbors(srcField->Lcd, x, y);
+                if(cellCount == 3) {
                     drawPixel(destField->Lcd, 1, x, y);   
+                } else if (cellCount == 2) {
+                    drawPixel(destField->Lcd, readPixel(srcField->Lcd, x, y), x, y);    
                 } else {
                     drawPixel(destField->Lcd, 0, x, y);   
                 };

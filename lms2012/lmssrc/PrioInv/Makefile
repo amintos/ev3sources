@@ -1,15 +1,15 @@
+ARCH = AM1808
+BASE = /home/patrick/projects/lms2012
+KERNEL = $(BASE)/../extra/linux-03.20.00.13
+UBOOT = $(BASE)/../extra/uboot-03.20.00.13
 
-#main: prioInv
+default: modules
 
-#prioInv: pri-inv.c
-#	arm-none-linux-gnueabi-gcc -o priorityInversion -lrt -lpthread -D_GNU_SOURCE -I../../../extra/linux-03.20.00.13/include priorityInversion.c
-
-#install:
-#	sudo cp priorityInversion /media/LMS2012_EXT/home/root; \
+KDIR ?= $(BASE)/../extra/linux-03.20.00.13
+include $(BASE)/open_first/rules.mk
 
 obj-m := priorityInversion.o
-KERNELDIR := /lib/modules/$(shell uname -r)/build
 PWD := $(shell pwd)
 
-default:
-	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules  
+modules:
+	$(MAKE) -C $(KDIR) M=$(PWD) modules  
