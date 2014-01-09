@@ -38,7 +38,7 @@ DEVKIT = $(BASE)/../extra/linux-devkit/arm-none-linux-gnueabi
 INCLUDES += -I$(DEVKIT)/usr/include/dbus-1.0
 INCLUDES += -I$(DEVKIT)/usr/lib/dbus-1.0/include
 INCLUDES += -I$(DEVKIT)/usr/include
-CFLAGS = -DPCASM $(INCLUDES) -O0 -Wall -fPIC
+CFLAGS = -v -DPCASM $(INCLUDES) -O0 -Wall -fPIC
 LDFLAGS = -L$(BASE)/lms2012/Linux_$(ARCH)/sys/lib -L$(DEVKIT)/usr/lib
 endif
 
@@ -128,6 +128,7 @@ endif
 PATH_CHECK = $(BASE)/open_first/.path-check
 PATH_CHECK_TRY = /usr/local/codesourcery/arm-2009q1/bin \
 		 /usr/local/arm-2009q1/bin \
+                 /home/patrick/Programs/CodeSourcery/Sourcery_G++_Lite/bin \
 		 $(HOME)/CodeSourcery/Sourcery_G++_Lite/bin
 
 $(PATH_CHECK):

@@ -1,0 +1,891 @@
+fdisk: kann /dev/sde nicht öffnen: Kein Medium gefunden
+/dev/sde1: No such file or directory
+mkfs.msdos 3.0.13 (30 Jun 2012)
+mke2fs 1.42.5 (29-Jul-2012)
+Status für /dev/sde2 konnte nicht ermittelt werden --- Datei oder Verzeichnis nicht gefunden
+
+Das Gerät existiert offensichtlich nicht; haben Sie es richtig angegeben?
+Das Gerät enthält weder eine gültige DOS-Partitionstabelle,
+noch einen „Sun“, „SGI“ oder „OSF disklabel“
+Building a new DOS disklabel with disk identifier 0x7802df1f.
+Changes will remain in memory only, until you decide to write them.
+After that, of course, the previous content won't be recoverable.
+
+Warnung: Schreiben wird ungültiges Flag 0x0000 in Part.-tabelle 4 korrigieren
+
+Befehl (m für Hilfe): 
+Platte /dev/sdd: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+
+Befehl (m für Hilfe): Noch keine Partition definiert!
+
+Befehl (m für Hilfe): 1: Unbekannter Befehl
+Befehl  Bedeutung
+   a   (De)Aktivieren des bootfähig-Flags
+   b   „bsd disklabel“ bearbeiten
+   c   (De)Aktivieren des DOS Kompatibilitätsflags
+   d   Eine Partition löschen
+   l   Die bekannten Dateisystemtypen anzeigen
+   m   Dieses Menü anzeigen
+   n   Eine neue Partition anlegen
+   o   Eine neue leere DOS Partitionstabelle anlegen
+   p   Die Partitionstabelle anzeigen
+   q   Ende ohne Speichern der Änderungen
+   s   Einen neuen leeren „Sun disklabel“ anlegen
+   t   Den Dateisystemtyp einer Partition ändern
+   u   Die Einheit für die Anzeige/Eingabe ändern
+   v   Die Partitionstabelle überprüfen
+   w   Die Tabelle auf die Festplatte schreiben und das Programm beenden
+   x   Zusätzliche Funktionen (nur für Experten)
+
+Befehl (m für Hilfe): Noch keine Partition definiert!
+
+Befehl (m für Hilfe): 2: Unbekannter Befehl
+Befehl  Bedeutung
+   a   (De)Aktivieren des bootfähig-Flags
+   b   „bsd disklabel“ bearbeiten
+   c   (De)Aktivieren des DOS Kompatibilitätsflags
+   d   Eine Partition löschen
+   l   Die bekannten Dateisystemtypen anzeigen
+   m   Dieses Menü anzeigen
+   n   Eine neue Partition anlegen
+   o   Eine neue leere DOS Partitionstabelle anlegen
+   p   Die Partitionstabelle anzeigen
+   q   Ende ohne Speichern der Änderungen
+   s   Einen neuen leeren „Sun disklabel“ anlegen
+   t   Den Dateisystemtyp einer Partition ändern
+   u   Die Einheit für die Anzeige/Eingabe ändern
+   v   Die Partitionstabelle überprüfen
+   w   Die Tabelle auf die Festplatte schreiben und das Programm beenden
+   x   Zusätzliche Funktionen (nur für Experten)
+
+Befehl (m für Hilfe): 
+Platte /dev/sdd: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+
+Befehl (m für Hilfe): Partition type:
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended
+Select (default p): Partitionsnummer (1-4, Vorgabe: 1): Erster Sektor (2048-15278079, Vorgabe: 2048): Wert außerhalb des Bereichs.
+Erster Sektor (2048-15278079, Vorgabe: 2048): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Wert außerhalb des Bereichs.
+Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Benutze den Standardwert 15278079
+
+Befehl (m für Hilfe): +: Unbekannter Befehl
+Befehl  Bedeutung
+   a   (De)Aktivieren des bootfähig-Flags
+   b   „bsd disklabel“ bearbeiten
+   c   (De)Aktivieren des DOS Kompatibilitätsflags
+   d   Eine Partition löschen
+   l   Die bekannten Dateisystemtypen anzeigen
+   m   Dieses Menü anzeigen
+   n   Eine neue Partition anlegen
+   o   Eine neue leere DOS Partitionstabelle anlegen
+   p   Die Partitionstabelle anzeigen
+   q   Ende ohne Speichern der Änderungen
+   s   Einen neuen leeren „Sun disklabel“ anlegen
+   t   Den Dateisystemtyp einer Partition ändern
+   u   Die Einheit für die Anzeige/Eingabe ändern
+   v   Die Partitionstabelle überprüfen
+   w   Die Tabelle auf die Festplatte schreiben und das Programm beenden
+   x   Zusätzliche Funktionen (nur für Experten)
+
+Befehl (m für Hilfe): 
+Platte /dev/sdd: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdd1          102400    15278079     7587840   83  Linux
+
+Befehl (m für Hilfe): Die Partitionstabelle wurde verändert!
+
+Rufe ioctl() um Partitionstabelle neu einzulesen.
+Synchronisiere Platten.
+mkfs.msdos 3.0.13 (30 Jun 2012)
+mke2fs 1.42.5 (29-Jul-2012)
+Status für /dev/sdd2 konnte nicht ermittelt werden --- Datei oder Verzeichnis nicht gefunden
+
+Das Gerät existiert offensichtlich nicht; haben Sie es richtig angegeben?
+
+Befehl (m für Hilfe): 
+Platte /dev/sdd: 7822 MByte, 7822376960 Byte
+119 Köpfe, 40 Sektoren/Spur, 3209 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdd1          102400    15278079     7587840   83  Linux
+
+Befehl (m für Hilfe): Partition 1 ausgewählt
+
+Befehl (m für Hilfe): 1: Unbekannter Befehl
+Befehl  Bedeutung
+   a   (De)Aktivieren des bootfähig-Flags
+   b   „bsd disklabel“ bearbeiten
+   c   (De)Aktivieren des DOS Kompatibilitätsflags
+   d   Eine Partition löschen
+   l   Die bekannten Dateisystemtypen anzeigen
+   m   Dieses Menü anzeigen
+   n   Eine neue Partition anlegen
+   o   Eine neue leere DOS Partitionstabelle anlegen
+   p   Die Partitionstabelle anzeigen
+   q   Ende ohne Speichern der Änderungen
+   s   Einen neuen leeren „Sun disklabel“ anlegen
+   t   Den Dateisystemtyp einer Partition ändern
+   u   Die Einheit für die Anzeige/Eingabe ändern
+   v   Die Partitionstabelle überprüfen
+   w   Die Tabelle auf die Festplatte schreiben und das Programm beenden
+   x   Zusätzliche Funktionen (nur für Experten)
+
+Befehl (m für Hilfe): Noch keine Partition definiert!
+
+Befehl (m für Hilfe): 2: Unbekannter Befehl
+Befehl  Bedeutung
+   a   (De)Aktivieren des bootfähig-Flags
+   b   „bsd disklabel“ bearbeiten
+   c   (De)Aktivieren des DOS Kompatibilitätsflags
+   d   Eine Partition löschen
+   l   Die bekannten Dateisystemtypen anzeigen
+   m   Dieses Menü anzeigen
+   n   Eine neue Partition anlegen
+   o   Eine neue leere DOS Partitionstabelle anlegen
+   p   Die Partitionstabelle anzeigen
+   q   Ende ohne Speichern der Änderungen
+   s   Einen neuen leeren „Sun disklabel“ anlegen
+   t   Den Dateisystemtyp einer Partition ändern
+   u   Die Einheit für die Anzeige/Eingabe ändern
+   v   Die Partitionstabelle überprüfen
+   w   Die Tabelle auf die Festplatte schreiben und das Programm beenden
+   x   Zusätzliche Funktionen (nur für Experten)
+
+Befehl (m für Hilfe): 
+Platte /dev/sdd: 7822 MByte, 7822376960 Byte
+119 Köpfe, 40 Sektoren/Spur, 3209 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+
+Befehl (m für Hilfe): Partition type:
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended
+Select (default p): Partitionsnummer (1-4, Vorgabe: 1): Erster Sektor (2048-15278079, Vorgabe: 2048): Wert außerhalb des Bereichs.
+Erster Sektor (2048-15278079, Vorgabe: 2048): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Wert außerhalb des Bereichs.
+Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Benutze den Standardwert 15278079
+
+Befehl (m für Hilfe): +: Unbekannter Befehl
+Befehl  Bedeutung
+   a   (De)Aktivieren des bootfähig-Flags
+   b   „bsd disklabel“ bearbeiten
+   c   (De)Aktivieren des DOS Kompatibilitätsflags
+   d   Eine Partition löschen
+   l   Die bekannten Dateisystemtypen anzeigen
+   m   Dieses Menü anzeigen
+   n   Eine neue Partition anlegen
+   o   Eine neue leere DOS Partitionstabelle anlegen
+   p   Die Partitionstabelle anzeigen
+   q   Ende ohne Speichern der Änderungen
+   s   Einen neuen leeren „Sun disklabel“ anlegen
+   t   Den Dateisystemtyp einer Partition ändern
+   u   Die Einheit für die Anzeige/Eingabe ändern
+   v   Die Partitionstabelle überprüfen
+   w   Die Tabelle auf die Festplatte schreiben und das Programm beenden
+   x   Zusätzliche Funktionen (nur für Experten)
+
+Befehl (m für Hilfe): 
+Platte /dev/sdd: 7822 MByte, 7822376960 Byte
+119 Köpfe, 40 Sektoren/Spur, 3209 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdd1          102400    15278079     7587840   83  Linux
+
+Befehl (m für Hilfe): Die Partitionstabelle wurde verändert!
+
+Rufe ioctl() um Partitionstabelle neu einzulesen.
+Synchronisiere Platten.
+mkfs.msdos 3.0.13 (30 Jun 2012)
+mke2fs 1.42.5 (29-Jul-2012)
+Status für /dev/sdd2 konnte nicht ermittelt werden --- Datei oder Verzeichnis nicht gefunden
+
+Das Gerät existiert offensichtlich nicht; haben Sie es richtig angegeben?
+
+Befehl (m für Hilfe): 
+Platte /dev/sdd: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdd1          102400    15278079     7587840   83  Linux
+/dev/sdd2            2048      102399       50176   83  Linux
+
+Partitionstabelleneinträge sind nicht in Platten-Reihenfolge
+
+Befehl (m für Hilfe): Partitionsnummer (1-4): 
+Befehl (m für Hilfe): Partition 2 ausgewählt
+
+Befehl (m für Hilfe): 2: Unbekannter Befehl
+Befehl  Bedeutung
+   a   (De)Aktivieren des bootfähig-Flags
+   b   „bsd disklabel“ bearbeiten
+   c   (De)Aktivieren des DOS Kompatibilitätsflags
+   d   Eine Partition löschen
+   l   Die bekannten Dateisystemtypen anzeigen
+   m   Dieses Menü anzeigen
+   n   Eine neue Partition anlegen
+   o   Eine neue leere DOS Partitionstabelle anlegen
+   p   Die Partitionstabelle anzeigen
+   q   Ende ohne Speichern der Änderungen
+   s   Einen neuen leeren „Sun disklabel“ anlegen
+   t   Den Dateisystemtyp einer Partition ändern
+   u   Die Einheit für die Anzeige/Eingabe ändern
+   v   Die Partitionstabelle überprüfen
+   w   Die Tabelle auf die Festplatte schreiben und das Programm beenden
+   x   Zusätzliche Funktionen (nur für Experten)
+
+Befehl (m für Hilfe): 
+Platte /dev/sdd: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+
+Befehl (m für Hilfe): Partition type:
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended
+Select (default p): Partitionsnummer (1-4, Vorgabe: 1): Erster Sektor (2048-15278079, Vorgabe: 2048): Wert außerhalb des Bereichs.
+Erster Sektor (2048-15278079, Vorgabe: 2048): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Wert außerhalb des Bereichs.
+Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Benutze den Standardwert 15278079
+
+Befehl (m für Hilfe): +: Unbekannter Befehl
+Befehl  Bedeutung
+   a   (De)Aktivieren des bootfähig-Flags
+   b   „bsd disklabel“ bearbeiten
+   c   (De)Aktivieren des DOS Kompatibilitätsflags
+   d   Eine Partition löschen
+   l   Die bekannten Dateisystemtypen anzeigen
+   m   Dieses Menü anzeigen
+   n   Eine neue Partition anlegen
+   o   Eine neue leere DOS Partitionstabelle anlegen
+   p   Die Partitionstabelle anzeigen
+   q   Ende ohne Speichern der Änderungen
+   s   Einen neuen leeren „Sun disklabel“ anlegen
+   t   Den Dateisystemtyp einer Partition ändern
+   u   Die Einheit für die Anzeige/Eingabe ändern
+   v   Die Partitionstabelle überprüfen
+   w   Die Tabelle auf die Festplatte schreiben und das Programm beenden
+   x   Zusätzliche Funktionen (nur für Experten)
+
+Befehl (m für Hilfe): 
+Platte /dev/sdd: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdd1          102400    15278079     7587840   83  Linux
+
+Befehl (m für Hilfe): Die Partitionstabelle wurde verändert!
+
+Rufe ioctl() um Partitionstabelle neu einzulesen.
+Synchronisiere Platten.
+mkfs.msdos 3.0.13 (30 Jun 2012)
+mke2fs 1.42.5 (29-Jul-2012)
+Status für /dev/sdd2 konnte nicht ermittelt werden --- Datei oder Verzeichnis nicht gefunden
+
+Das Gerät existiert offensichtlich nicht; haben Sie es richtig angegeben?
+
+Befehl (m für Hilfe): 
+Platte /dev/sdd: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdd1          102400    15278079     7587840   83  Linux
+/dev/sdd2            2048      102399       50176   83  Linux
+
+Partitionstabelleneinträge sind nicht in Platten-Reihenfolge
+
+Befehl (m für Hilfe): Partitionsnummer (1-4): 
+Befehl (m für Hilfe): Partition 2 ausgewählt
+
+Befehl (m für Hilfe): 
+Platte /dev/sdd: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+
+Befehl (m für Hilfe): Partition type:
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended
+Select (default p): Partitionsnummer (1-4, Vorgabe: 1): Erster Sektor (2048-15278079, Vorgabe: 2048): Wert außerhalb des Bereichs.
+Erster Sektor (2048-15278079, Vorgabe: 2048): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Wert außerhalb des Bereichs.
+Last Sektor, +Sektoren or +size{K,M,G} (102400-15278079, Vorgabe: 15278079): Benutze den Standardwert 15278079
+
+Befehl (m für Hilfe): +: Unbekannter Befehl
+Befehl  Bedeutung
+   a   (De)Aktivieren des bootfähig-Flags
+   b   „bsd disklabel“ bearbeiten
+   c   (De)Aktivieren des DOS Kompatibilitätsflags
+   d   Eine Partition löschen
+   l   Die bekannten Dateisystemtypen anzeigen
+   m   Dieses Menü anzeigen
+   n   Eine neue Partition anlegen
+   o   Eine neue leere DOS Partitionstabelle anlegen
+   p   Die Partitionstabelle anzeigen
+   q   Ende ohne Speichern der Änderungen
+   s   Einen neuen leeren „Sun disklabel“ anlegen
+   t   Den Dateisystemtyp einer Partition ändern
+   u   Die Einheit für die Anzeige/Eingabe ändern
+   v   Die Partitionstabelle überprüfen
+   w   Die Tabelle auf die Festplatte schreiben und das Programm beenden
+   x   Zusätzliche Funktionen (nur für Experten)
+
+Befehl (m für Hilfe): 
+Platte /dev/sdd: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdd1          102400    15278079     7587840   83  Linux
+
+Befehl (m für Hilfe): Die Partitionstabelle wurde verändert!
+
+Rufe ioctl() um Partitionstabelle neu einzulesen.
+Synchronisiere Platten.
+mkfs.msdos 3.0.13 (30 Jun 2012)
+mke2fs 1.42.5 (29-Jul-2012)
+Status für /dev/sdd2 konnte nicht ermittelt werden --- Datei oder Verzeichnis nicht gefunden
+
+Das Gerät existiert offensichtlich nicht; haben Sie es richtig angegeben?
+
+Befehl (m für Hilfe): 
+Platte /dev/sdd: 7822 MByte, 7822376960 Byte
+119 Köpfe, 40 Sektoren/Spur, 3209 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdd1          102400    15278079     7587840   83  Linux
+
+Befehl (m für Hilfe): Partition 1 ausgewählt
+
+Befehl (m für Hilfe): 1: Unbekannter Befehl
+Befehl  Bedeutung
+   a   (De)Aktivieren des bootfähig-Flags
+   b   „bsd disklabel“ bearbeiten
+   c   (De)Aktivieren des DOS Kompatibilitätsflags
+   d   Eine Partition löschen
+   l   Die bekannten Dateisystemtypen anzeigen
+   m   Dieses Menü anzeigen
+   n   Eine neue Partition anlegen
+   o   Eine neue leere DOS Partitionstabelle anlegen
+   p   Die Partitionstabelle anzeigen
+   q   Ende ohne Speichern der Änderungen
+   s   Einen neuen leeren „Sun disklabel“ anlegen
+   t   Den Dateisystemtyp einer Partition ändern
+   u   Die Einheit für die Anzeige/Eingabe ändern
+   v   Die Partitionstabelle überprüfen
+   w   Die Tabelle auf die Festplatte schreiben und das Programm beenden
+   x   Zusätzliche Funktionen (nur für Experten)
+
+Befehl (m für Hilfe): Noch keine Partition definiert!
+
+Befehl (m für Hilfe): 
+Platte /dev/sdd: 7822 MByte, 7822376960 Byte
+119 Köpfe, 40 Sektoren/Spur, 3209 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+
+Befehl (m für Hilfe): Partition type:
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended
+Select (default p): Partitionsnummer (1-4, Vorgabe: 1): Erster Sektor (2048-15278079, Vorgabe: 2048): Benutze den Standardwert 2048
+Last Sektor, +Sektoren or +size{K,M,G} (2048-15278079, Vorgabe: 15278079): 
+Befehl (m für Hilfe): Partition 1 ausgewählt
+Hex code (L um eine Liste anzuzeigen): Der Dateisystemtyp der Partition 1 ist nun b (W95 FAT32)
+
+Befehl (m für Hilfe): Partition type:
+   p   primary (1 primary, 0 extended, 3 free)
+   e   extended
+Select (default p): Partitionsnummer (1-4, Vorgabe: 2): Erster Sektor (104448-15278079, Vorgabe: 104448): Benutze den Standardwert 104448
+Last Sektor, +Sektoren or +size{K,M,G} (104448-15278079, Vorgabe: 15278079): 
+Befehl (m für Hilfe): 
+Platte /dev/sdd: 7822 MByte, 7822376960 Byte
+119 Köpfe, 40 Sektoren/Spur, 3209 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdd1            2048      104447       51200    b  W95 FAT32
+/dev/sdd2          104448      514047      204800   83  Linux
+
+Befehl (m für Hilfe): Die Partitionstabelle wurde verändert!
+
+Rufe ioctl() um Partitionstabelle neu einzulesen.
+
+WARNUNG: Wenn Sie eine DOS 6.x Partition angelegt
+oder verändert haben, dann schauen Sie bitte in die
+fdisk-manual-Seite nach weiteren Informationen
+Synchronisiere Platten.
+mkfs.msdos 3.0.13 (30 Jun 2012)
+mke2fs 1.42.5 (29-Jul-2012)
+Dateisystem-Label=LMS2012_EXT
+OS-Typ: Linux
+Blockgröße=1024 (log=0)
+Fragmentgröße=1024 (log=0)
+Stride=0 Blöcke, Stripebreite=0 Blöcke
+51200 Inodes, 204800 Blöcke
+10240 Blöcke (5.00%) reserviert für den Superuser
+Erster Datenblock=1
+Maximale Dateisystem-Blöcke=67371008
+25 Blockgruppen
+8192 Blöcke pro Gruppe, 8192 Fragmente pro Gruppe
+2048 Inodes pro Gruppe
+Superblock-Sicherungskopien gespeichert in den Blöcken: 
+	8193, 24577, 40961, 57345, 73729
+
+Platz für Gruppentabellen wird angefordert:  0/25 1/25 2/25 3/25 4/25 5/25 6/25 7/25 8/25 9/2510/2511/2512/2513/2514/2515/2516/2517/2518/2519/2520/2521/2522/2523/2524/25     erledigt                        
+Inode-Tabellen werden geschrieben:  0/25 1/25 2/25 3/25 4/25 5/25 6/25 7/25 8/25 9/2510/2511/2512/2513/2514/2515/2516/2517/2518/2519/2520/2521/2522/2523/2524/25     erledigt                        
+Erstelle Journal (4096 Blöcke): erledigt
+Schreibe Superblöcke und Dateisystem-Accountinginformationen:  0/25 1/25 2/25 3/25 4/25 5/25 6/25 7/25 8/25 9/2510/2511/2512/2513/2514/2515/2516/2517/2518/2519/2520/2521/2522/2523/2524/25     erledigt
+
+
+Befehl (m für Hilfe): 
+Platte /dev/sdb: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdb1            2048      104447       51200    b  W95 FAT32
+/dev/sdb2          104448      514047      204800   83  Linux
+
+Befehl (m für Hilfe): Partitionsnummer (1-4): 
+Befehl (m für Hilfe): Partition 2 ausgewählt
+
+Befehl (m für Hilfe): 
+Platte /dev/sdb: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+
+Befehl (m für Hilfe): Partition type:
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended
+Select (default p): Partitionsnummer (1-4, Vorgabe: 1): Erster Sektor (2048-15278079, Vorgabe: 2048): Benutze den Standardwert 2048
+Last Sektor, +Sektoren or +size{K,M,G} (2048-15278079, Vorgabe: 15278079): 
+Befehl (m für Hilfe): Partition 1 ausgewählt
+Hex code (L um eine Liste anzuzeigen): Der Dateisystemtyp der Partition 1 ist nun b (W95 FAT32)
+
+Befehl (m für Hilfe): Partition type:
+   p   primary (1 primary, 0 extended, 3 free)
+   e   extended
+Select (default p): Partitionsnummer (1-4, Vorgabe: 2): Erster Sektor (104448-15278079, Vorgabe: 104448): Benutze den Standardwert 104448
+Last Sektor, +Sektoren or +size{K,M,G} (104448-15278079, Vorgabe: 15278079): 
+Befehl (m für Hilfe): 
+Platte /dev/sdb: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdb1            2048      104447       51200    b  W95 FAT32
+/dev/sdb2          104448      514047      204800   83  Linux
+
+Befehl (m für Hilfe): Die Partitionstabelle wurde verändert!
+
+Rufe ioctl() um Partitionstabelle neu einzulesen.
+
+WARNUNG: Wenn Sie eine DOS 6.x Partition angelegt
+oder verändert haben, dann schauen Sie bitte in die
+fdisk-manual-Seite nach weiteren Informationen
+Synchronisiere Platten.
+mkfs.msdos 3.0.13 (30 Jun 2012)
+mke2fs 1.42.5 (29-Jul-2012)
+Dateisystem-Label=LMS2012_EXT
+OS-Typ: Linux
+Blockgröße=1024 (log=0)
+Fragmentgröße=1024 (log=0)
+Stride=0 Blöcke, Stripebreite=0 Blöcke
+51200 Inodes, 204800 Blöcke
+10240 Blöcke (5.00%) reserviert für den Superuser
+Erster Datenblock=1
+Maximale Dateisystem-Blöcke=67371008
+25 Blockgruppen
+8192 Blöcke pro Gruppe, 8192 Fragmente pro Gruppe
+2048 Inodes pro Gruppe
+Superblock-Sicherungskopien gespeichert in den Blöcken: 
+	8193, 24577, 40961, 57345, 73729
+
+Platz für Gruppentabellen wird angefordert:  0/25 1/25 2/25 3/25 4/25 5/25 6/25 7/25 8/25 9/2510/2511/2512/2513/2514/2515/2516/2517/2518/2519/2520/2521/2522/2523/2524/25     erledigt                        
+Inode-Tabellen werden geschrieben:  0/25 1/25 2/25 3/25 4/25 5/25 6/25 7/25 8/25 9/2510/2511/2512/2513/2514/2515/2516/2517/2518/2519/2520/2521/2522/2523/2524/25     erledigt                        
+Erstelle Journal (4096 Blöcke): erledigt
+Schreibe Superblöcke und Dateisystem-Accountinginformationen:  0/25 1/25 2/25 3/25 4/25 5/25 6/25 7/25 8/25 9/2510/2511/2512/2513/2514/2515/2516/2517/2518/2519/2520/2521/2522/2523/2524/25     erledigt
+
+
+Befehl (m für Hilfe): 
+Platte /dev/sdb: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdb1            2048      104447       51200    b  W95 FAT32
+/dev/sdb2          104448      514047      204800   83  Linux
+
+Befehl (m für Hilfe): Partitionsnummer (1-4): 
+Befehl (m für Hilfe): Partition 2 ausgewählt
+
+Befehl (m für Hilfe): 
+Platte /dev/sdb: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+
+Befehl (m für Hilfe): Partition type:
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended
+Select (default p): Partitionsnummer (1-4, Vorgabe: 1): Erster Sektor (2048-15278079, Vorgabe: 2048): Benutze den Standardwert 2048
+Last Sektor, +Sektoren or +size{K,M,G} (2048-15278079, Vorgabe: 15278079): 
+Befehl (m für Hilfe): Partition 1 ausgewählt
+Hex code (L um eine Liste anzuzeigen): Der Dateisystemtyp der Partition 1 ist nun b (W95 FAT32)
+
+Befehl (m für Hilfe): Partition type:
+   p   primary (1 primary, 0 extended, 3 free)
+   e   extended
+Select (default p): Partitionsnummer (1-4, Vorgabe: 2): Erster Sektor (104448-15278079, Vorgabe: 104448): Benutze den Standardwert 104448
+Last Sektor, +Sektoren or +size{K,M,G} (104448-15278079, Vorgabe: 15278079): 
+Befehl (m für Hilfe): 
+Platte /dev/sdb: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdb1            2048      104447       51200    b  W95 FAT32
+/dev/sdb2          104448      514047      204800   83  Linux
+
+Befehl (m für Hilfe): Die Partitionstabelle wurde verändert!
+
+Rufe ioctl() um Partitionstabelle neu einzulesen.
+
+WARNUNG: Wenn Sie eine DOS 6.x Partition angelegt
+oder verändert haben, dann schauen Sie bitte in die
+fdisk-manual-Seite nach weiteren Informationen
+Synchronisiere Platten.
+mkfs.msdos 3.0.13 (30 Jun 2012)
+mke2fs 1.42.5 (29-Jul-2012)
+Dateisystem-Label=LMS2012_EXT
+OS-Typ: Linux
+Blockgröße=1024 (log=0)
+Fragmentgröße=1024 (log=0)
+Stride=0 Blöcke, Stripebreite=0 Blöcke
+51200 Inodes, 204800 Blöcke
+10240 Blöcke (5.00%) reserviert für den Superuser
+Erster Datenblock=1
+Maximale Dateisystem-Blöcke=67371008
+25 Blockgruppen
+8192 Blöcke pro Gruppe, 8192 Fragmente pro Gruppe
+2048 Inodes pro Gruppe
+Superblock-Sicherungskopien gespeichert in den Blöcken: 
+	8193, 24577, 40961, 57345, 73729
+
+Platz für Gruppentabellen wird angefordert:  0/25 1/25 2/25 3/25 4/25 5/25 6/25 7/25 8/25 9/2510/2511/2512/2513/2514/2515/2516/2517/2518/2519/2520/2521/2522/2523/2524/25     erledigt                        
+Inode-Tabellen werden geschrieben:  0/25 1/25 2/25 3/25 4/25 5/25 6/25 7/25 8/25 9/2510/2511/2512/2513/2514/2515/2516/2517/2518/2519/2520/2521/2522/2523/2524/25     erledigt                        
+Erstelle Journal (4096 Blöcke): erledigt
+Schreibe Superblöcke und Dateisystem-Accountinginformationen:  0/25 1/25 2/25 3/25 4/25 5/25 6/25 7/25 8/25 9/2510/2511/2512/2513/2514/2515/2516/2517/2518/2519/2520/2521/2522/2523/2524/25     erledigt
+
+
+Befehl (m für Hilfe): 
+Platte /dev/sdb: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdb1            2048      104447       51200    b  W95 FAT32
+/dev/sdb2          104448      514047      204800   83  Linux
+
+Befehl (m für Hilfe): Partitionsnummer (1-4): 
+Befehl (m für Hilfe): Partition 2 ausgewählt
+
+Befehl (m für Hilfe): 
+Platte /dev/sdb: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+
+Befehl (m für Hilfe): Partition type:
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended
+Select (default p): Partitionsnummer (1-4, Vorgabe: 1): Erster Sektor (2048-15278079, Vorgabe: 2048): Benutze den Standardwert 2048
+Last Sektor, +Sektoren or +size{K,M,G} (2048-15278079, Vorgabe: 15278079): 
+Befehl (m für Hilfe): Partition 1 ausgewählt
+Hex code (L um eine Liste anzuzeigen): Der Dateisystemtyp der Partition 1 ist nun b (W95 FAT32)
+
+Befehl (m für Hilfe): Partition type:
+   p   primary (1 primary, 0 extended, 3 free)
+   e   extended
+Select (default p): Partitionsnummer (1-4, Vorgabe: 2): Erster Sektor (104448-15278079, Vorgabe: 104448): Benutze den Standardwert 104448
+Last Sektor, +Sektoren or +size{K,M,G} (104448-15278079, Vorgabe: 15278079): 
+Befehl (m für Hilfe): 
+Platte /dev/sdb: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdb1            2048      104447       51200    b  W95 FAT32
+/dev/sdb2          104448      514047      204800   83  Linux
+
+Befehl (m für Hilfe): Die Partitionstabelle wurde verändert!
+
+Rufe ioctl() um Partitionstabelle neu einzulesen.
+
+WARNUNG: Wenn Sie eine DOS 6.x Partition angelegt
+oder verändert haben, dann schauen Sie bitte in die
+fdisk-manual-Seite nach weiteren Informationen
+Synchronisiere Platten.
+mkfs.msdos 3.0.13 (30 Jun 2012)
+mke2fs 1.42.5 (29-Jul-2012)
+Dateisystem-Label=LMS2012_EXT
+OS-Typ: Linux
+Blockgröße=1024 (log=0)
+Fragmentgröße=1024 (log=0)
+Stride=0 Blöcke, Stripebreite=0 Blöcke
+51200 Inodes, 204800 Blöcke
+10240 Blöcke (5.00%) reserviert für den Superuser
+Erster Datenblock=1
+Maximale Dateisystem-Blöcke=67371008
+25 Blockgruppen
+8192 Blöcke pro Gruppe, 8192 Fragmente pro Gruppe
+2048 Inodes pro Gruppe
+Superblock-Sicherungskopien gespeichert in den Blöcken: 
+	8193, 24577, 40961, 57345, 73729
+
+Platz für Gruppentabellen wird angefordert:  0/25 1/25 2/25 3/25 4/25 5/25 6/25 7/25 8/25 9/2510/2511/2512/2513/2514/2515/2516/2517/2518/2519/2520/2521/2522/2523/2524/25     erledigt                        
+Inode-Tabellen werden geschrieben:  0/25 1/25 2/25 3/25 4/25 5/25 6/25 7/25 8/25 9/2510/2511/2512/2513/2514/2515/2516/2517/2518/2519/2520/2521/2522/2523/2524/25     erledigt                        
+Erstelle Journal (4096 Blöcke): erledigt
+Schreibe Superblöcke und Dateisystem-Accountinginformationen:  0/25 1/25 2/25 3/25 4/25 5/25 6/25 7/25 8/25 9/2510/2511/2512/2513/2514/2515/2516/2517/2518/2519/2520/2521/2522/2523/2524/25     erledigt
+
+
+Befehl (m für Hilfe): 
+Platte /dev/sdb: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdb1            2048      104447       51200    b  W95 FAT32
+/dev/sdb2          104448      514047      204800   83  Linux
+
+Befehl (m für Hilfe): Partitionsnummer (1-4): 
+Befehl (m für Hilfe): Partition 2 ausgewählt
+
+Befehl (m für Hilfe): 
+Platte /dev/sdb: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+
+Befehl (m für Hilfe): Partition type:
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended
+Select (default p): Partitionsnummer (1-4, Vorgabe: 1): Erster Sektor (2048-15278079, Vorgabe: 2048): Benutze den Standardwert 2048
+Last Sektor, +Sektoren or +size{K,M,G} (2048-15278079, Vorgabe: 15278079): 
+Befehl (m für Hilfe): Partition 1 ausgewählt
+Hex code (L um eine Liste anzuzeigen): Der Dateisystemtyp der Partition 1 ist nun b (W95 FAT32)
+
+Befehl (m für Hilfe): Partition type:
+   p   primary (1 primary, 0 extended, 3 free)
+   e   extended
+Select (default p): Partitionsnummer (1-4, Vorgabe: 2): Erster Sektor (104448-15278079, Vorgabe: 104448): Benutze den Standardwert 104448
+Last Sektor, +Sektoren or +size{K,M,G} (104448-15278079, Vorgabe: 15278079): 
+Befehl (m für Hilfe): 
+Platte /dev/sdb: 7822 MByte, 7822376960 Byte
+241 Köpfe, 62 Sektoren/Spur, 1022 Zylinder, zusammen 15278080 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x7802df1f
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdb1            2048      104447       51200    b  W95 FAT32
+/dev/sdb2          104448      514047      204800   83  Linux
+
+Befehl (m für Hilfe): Die Partitionstabelle wurde verändert!
+
+Rufe ioctl() um Partitionstabelle neu einzulesen.
+
+WARNING: Re-reading the partition table failed with error 16: Das Gerät oder die Ressource ist belegt.
+The kernel still uses the old table. The new table will be used at
+the next reboot or after you run partprobe(8) or kpartx(8)
+
+WARNUNG: Wenn Sie eine DOS 6.x Partition angelegt
+oder verändert haben, dann schauen Sie bitte in die
+fdisk-manual-Seite nach weiteren Informationen
+Synchronisiere Platten.
+mkfs.msdos: /dev/sdb1 contains a mounted file system.
+mkfs.msdos 3.0.13 (30 Jun 2012)
+mke2fs 1.42.5 (29-Jul-2012)
+/dev/sdb2 ist eingehängt; werde dort kein Dateisystem erstellen!
+
+Befehl (m für Hilfe): 
+Platte /dev/sdb: 7948 MByte, 7948206080 Byte
+245 Köpfe, 62 Sektoren/Spur, 1021 Zylinder, zusammen 15523840 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x00000000
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdb1            2048      104447       51200    b  W95 FAT32
+/dev/sdb2          104448      514047      204800   83  Linux
+
+Befehl (m für Hilfe): Partitionsnummer (1-4): 
+Befehl (m für Hilfe): Partition 2 ausgewählt
+
+Befehl (m für Hilfe): 
+Platte /dev/sdb: 7948 MByte, 7948206080 Byte
+245 Köpfe, 62 Sektoren/Spur, 1021 Zylinder, zusammen 15523840 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x00000000
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+
+Befehl (m für Hilfe): Partition type:
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended
+Select (default p): Partitionsnummer (1-4, Vorgabe: 1): Erster Sektor (2048-15523839, Vorgabe: 2048): Benutze den Standardwert 2048
+Last Sektor, +Sektoren or +size{K,M,G} (2048-15523839, Vorgabe: 15523839): 
+Befehl (m für Hilfe): Partition 1 ausgewählt
+Hex code (L um eine Liste anzuzeigen): Der Dateisystemtyp der Partition 1 ist nun b (W95 FAT32)
+
+Befehl (m für Hilfe): Partition type:
+   p   primary (1 primary, 0 extended, 3 free)
+   e   extended
+Select (default p): Partitionsnummer (1-4, Vorgabe: 2): Erster Sektor (104448-15523839, Vorgabe: 104448): Benutze den Standardwert 104448
+Last Sektor, +Sektoren or +size{K,M,G} (104448-15523839, Vorgabe: 15523839): 
+Befehl (m für Hilfe): 
+Platte /dev/sdb: 7948 MByte, 7948206080 Byte
+245 Köpfe, 62 Sektoren/Spur, 1021 Zylinder, zusammen 15523840 Sektoren
+Einheiten = Sektoren von 1 × 512 = 512 Bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Festplattenidentifikation: 0x00000000
+
+   Gerät  boot.     Anfang        Ende     Blöcke   Id  System
+/dev/sdb1            2048      104447       51200    b  W95 FAT32
+/dev/sdb2          104448      514047      204800   83  Linux
+
+Befehl (m für Hilfe): Die Partitionstabelle wurde verändert!
+
+Rufe ioctl() um Partitionstabelle neu einzulesen.
+
+WARNUNG: Wenn Sie eine DOS 6.x Partition angelegt
+oder verändert haben, dann schauen Sie bitte in die
+fdisk-manual-Seite nach weiteren Informationen
+Synchronisiere Platten.
+mkfs.msdos 3.0.13 (30 Jun 2012)
+mke2fs 1.42.5 (29-Jul-2012)
+Dateisystem-Label=LMS2012_EXT
+OS-Typ: Linux
+Blockgröße=1024 (log=0)
+Fragmentgröße=1024 (log=0)
+Stride=0 Blöcke, Stripebreite=0 Blöcke
+51200 Inodes, 204800 Blöcke
+10240 Blöcke (5.00%) reserviert für den Superuser
+Erster Datenblock=1
+Maximale Dateisystem-Blöcke=67371008
+25 Blockgruppen
+8192 Blöcke pro Gruppe, 8192 Fragmente pro Gruppe
+2048 Inodes pro Gruppe
+Superblock-Sicherungskopien gespeichert in den Blöcken: 
+	8193, 24577, 40961, 57345, 73729
+
+Platz für Gruppentabellen wird angefordert:  0/25 1/25 2/25 3/25 4/25 5/25 6/25 7/25 8/25 9/2510/2511/2512/2513/2514/2515/2516/2517/2518/2519/2520/2521/2522/2523/2524/25     erledigt                        
+Inode-Tabellen werden geschrieben:  0/25 1/25 2/25 3/25 4/25 5/25 6/25 7/25 8/25 9/2510/2511/2512/2513/2514/2515/2516/2517/2518/2519/2520/2521/2522/2523/2524/25     erledigt                        
+Erstelle Journal (4096 Blöcke): erledigt
+Schreibe Superblöcke und Dateisystem-Accountinginformationen:  0/25 1/25 2/25 3/25 4/25 5/25 6/25 7/25 8/25 9/2510/2511/2512/2513/2514/2515/2516/2517/2518/2519/2520/2521/2522/2523/2524/25     erledigt
+

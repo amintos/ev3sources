@@ -38,9 +38,9 @@ $(LIBS:%=%.clean): %.clean:
 #
 # lms2012 modules.
 #
-
-MODULES = d_analog d_bt d_iic d_power d_pwm d_sound d_uart d_ui d_usbdev \
-	  d_usbhost
+#removed d_usbdev d_usbhost from modules list as it is currently broken --pre
+MODULES = d_analog d_bt d_iic d_power d_pwm d_sound d_uart d_ui  \
+	  test_prioinv
 
 modules: $(MODULES)
 
