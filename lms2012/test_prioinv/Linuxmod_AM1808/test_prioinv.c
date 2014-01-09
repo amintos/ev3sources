@@ -40,7 +40,7 @@ int threadLow_fn(void* params) {
         int now;
 
         priorityLow.sched_priority = 1;
-	sched_setscheduler(threadLow, -1, &priorityLow); 
+	sched_setscheduler(threadLow, SCHED_FIFO, &priorityLow); 
 
         /* Waiting to be allowed to start */
         if(down_interruptible(&lowGo)) {
@@ -61,11 +61,11 @@ int threadLow_fn(void* params) {
 	};
 
         /* Start the others */
+    	now = gettimeMsec();
         up(&highGo);
         up(&midGo);
 
         /* Be busy */
-    	now = gettimeMsec();
 	spin_for(LOW_SPIN*seconds*msecPerSecond);
 
         /* Be gentle and release the shared mutex */
@@ -84,13 +84,15 @@ int threadMiddle_fn(void* params) {
         int now;
 
         priorityMiddle.sched_priority = 25;
-	sched_setscheduler(threadMiddle, -1, &priorityMiddle); 
+	sched_setscheduler(threadMiddle, SCHED_FIFO, &priorityMiddle); 
 
 	/* Show I'm ready */
         up(&midReady);
         
         /* Wait to start */
-        down_interruptible(&midGo);
+        if(down_interruptible(&midGo)) {
+		return -1;
+	};
 
 	/* Get busy */
     	now = gettimeMsec();
@@ -107,13 +109,15 @@ int threadHigh_fn(void* params) {
 	int now;
 
         priorityHigh.sched_priority = 50;
-	sched_setscheduler(threadHigh, -1, &priorityHigh); 
+	sched_setscheduler(threadHigh, SCHED_FIFO, &priorityHigh); 
 
 	/* Show I'm ready */
         up(&highReady);
         
         /* Wait to start */
-        down_interruptible(&highGo);
+        if(down_interruptible(&highGo)) {
+		return -1;
+	};
 
         /* Try to get the shared mutex */
     	now = gettimeMsec();
@@ -144,7 +148,6 @@ int thread_init (void) {
 
         sema_init(&sharedMutex, 1);
 
-	up(&lowGo);
 
         atomic_inc(&threadCount);
 	threadLow = kthread_create(
@@ -170,6 +173,8 @@ int thread_init (void) {
 	if(!IS_ERR(threadHigh)) {
 		wake_up_process(threadHigh);
 	}
+
+	up(&lowGo);
 
 	return 0;
 }
