@@ -5,7 +5,6 @@
 #include <linux/time.h>   // for using jiffies  
 #include <linux/jiffies.h>   // for using jiffies  
 #include <linux/timer.h>
-#include <linux/rtmutex.h>
 
 #include <linux/semaphore.h>
 
@@ -16,9 +15,7 @@ static struct task_struct 	*threadLow,
 
 static atomic_t threadCount;
 
-struct semaphore lowGo, midGo, highGo, highReady, midReady;
-
-struct rt_mutex sharedMutex;
+struct semaphore lowGo, midGo, highGo, highReady, midReady, sharedMutex;
 
 const int msecPerSecond = 1000;
 const int seconds = 1;
@@ -51,7 +48,7 @@ int threadLow_fn(void* params) {
 	};
 
         /* Acquire the mutex shared by the low and the high thread */
-        if(rt_mutex_lock_interruptible(&sharedMutex, 0)) {
+        if(down_interruptible(&sharedMutex)) {
 		return -1;
 	};
 
@@ -72,7 +69,7 @@ int threadLow_fn(void* params) {
 	spin_for(LOW_SPIN*seconds*msecPerSecond);
 
         /* Be gentle and release the shared mutex */
-	rt_mutex_unlock(&sharedMutex);
+	up(&sharedMutex);
          
 	printk ("Low took %d seconds wanted about %d (critical section + mid time)\n",gettimeMsec() - now,LOW_SPIN+MID_SPIN);
 
@@ -124,10 +121,10 @@ int threadHigh_fn(void* params) {
 
         /* Try to get the shared mutex */
     	now = gettimeMsec();
-        if(rt_mutex_lock_interruptible(&sharedMutex,0)) {
+        if(down_interruptible(&sharedMutex)) {
 		return -1;
 	};
-        rt_mutex_unlock(&sharedMutex);
+        up(&sharedMutex);
 
 	printk("high took %d seconds wanted about %d (low critical section)\n",gettimeMsec() - now,LOW_SPIN);
 
@@ -140,7 +137,6 @@ int thread_init (void) {
 	char lowThreadName[10]="threadLow";
 	char middleThreadName[13]= "threadMiddle";
 	char highThreadName[11]= "threadHigh";
-	char sharedMutexName[12]= "sharedMutex";
 
         atomic_set(&threadCount,0);
 
@@ -150,7 +146,8 @@ int thread_init (void) {
 	sema_init(&highReady,0); 
 	sema_init(&midReady,0); 
 
-	__rt_mutex_init(&sharedMutex, sharedMutexName);
+        sema_init(&sharedMutex, 1);
+
 
         atomic_inc(&threadCount);
 	threadLow = kthread_create(
