@@ -1,0 +1,2 @@
+#!/bin/bash
+export SDCARD_PATH="/dev/sdb"

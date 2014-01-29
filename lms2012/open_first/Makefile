@@ -36,11 +36,26 @@ $(LIBS:%=%.clean): %.clean:
 .PHONY: lms2012 lms2012.clean $(LIBS:%=%.clean)
 
 #
+# mars rover control programs.
+#
+
+LIBS = c_com c_input c_memory c_output c_sound c_ui
+
+control:
+	$(MAKE) -C $(BASE)/motor_control/Linux_$(ARCH)
+	$(MAKE) -C $(BASE)/sensor_control/Linux_$(ARCH)
+
+control.clean: $(LIBS:%=%.clean)
+	$(MAKE) -C $(BASE)/motor_control/Linux_$(ARCH) clean uninstall
+	$(MAKE) -C $(BASE)/sensor_control/Linux_$(ARCH) clean uninstall
+
+.PHONY: motor_control motor_control.clean $(LIBS:%=%.clean)
+
+#
 # lms2012 modules.
 #
-#removed d_usbdev d_usbhost from modules list as it is currently broken --pre
-MODULES = d_analog d_bt d_iic d_power d_pwm d_sound d_uart d_ui  \
-	  test_prioinv
+MODULES = mars_rover d_analog d_bt d_iic d_power d_pwm d_sound d_uart d_ui  \
+	  test_prioinv d_usbdev d_usbhost
 
 modules: $(MODULES)
 
@@ -75,10 +90,10 @@ $(KERNEL)/.config: $(KERNEL_CONF)
 
 kernel.prepare: $(KERNEL)/include/generated/bounds.h
 $(KERNEL)/include/generated/bounds.h: $(KERNEL)/.config
-	$(MAKE) -C $(KERNEL) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) oldconfig modules_prepare
+	$(MAKE) -j2 -C $(KERNEL) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) oldconfig modules_prepare
 
 $(KERNEL)/arch/arm/boot/uImage: kernel.prepare | $(MKIMAGE_CHECK)
-	$(MAKE) -C $(KERNEL) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) uImage
+	$(MAKE) -j2 -C $(KERNEL) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) uImage
 
 uImage: $(KERNEL)/arch/arm/boot/uImage
 	cp $< $@
@@ -129,10 +144,21 @@ doc.clean:
 # Install
 #
 
-install:
+build_image: kernel
+	sudo ./make_image.sh; 
+
+install_mars_rover: mars_rover control
 	./mounty.sh; \
-	sudo ./make_image.sh; \
+    sudo cp ../motor_control/Linux_AM1808/motor_control /media/LMS2012_EXT/home/root; \
+    sudo cp ../sensor_control/Linux_AM1808/sensor_control /media/LMS2012_EXT/home/root; \
+    sudo cp ../mars_rover/Linuxmod_AM1808/mars_rover.ko /media/LMS2012_EXT/home/root; \
+	./umounty.sh;
+
+install_kernel: build_image
+	./mounty.sh; \
 	sudo ./update_sdcard.sh; \
+    sudo cp ./lmsInit /media/LMS2012_EXT/etc/init.d/lms; \
+    sudo chmod a+rwx /media/LMS2012_EXT/etc/init.d/lms; \
 	./umounty.sh;
 
 #
@@ -147,7 +173,9 @@ help:
 	@echo ' kernel: to build Linux kernel'
 	@echo ' u-boot: to build u-Boot'
 	@echo ' doc: to build documentation'
-	@echo ' install: to write to the sdcard specified via [u]mounty'
+	@echo ' install_kernel: to write kernel to the sdcard specified via [u]mounty'
+	@echo ' install_mars: to write mars rover executables to the sdcard specified via [u]mounty'
+	@echo ' build_image: create a sdcard image'
 	@echo
 	@echo 'Execute "make doc.view" to view the documentation in a web'
 	@echo 'browser'

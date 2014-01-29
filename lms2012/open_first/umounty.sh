@@ -1,6 +1,8 @@
 #!/bin/bash
 
+. ./sdcardDev
+
 sync
-sudo umount /dev/sdb1
-sudo umount /dev/sdb2
+sudo umount ${SDCARD_PATH}1
+sudo umount ${SDCARD_PATH}2
 
