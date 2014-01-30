@@ -449,6 +449,9 @@ int __irq_set_trigger(struct irq_desc *desc, unsigned int irq,
  */
 static irqreturn_t irq_default_primary_handler(int irq, void *dev_id)
 {
+    if (irq == 59) {
+        irq_to_desc(irq)->chip->mask(irq);
+    }
 	return IRQ_WAKE_THREAD;
 }
 
