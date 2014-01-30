@@ -144,7 +144,7 @@ doc.clean:
 # Install
 #
 
-build_image: kernel
+build_image: kernel modules
 	sudo ./make_image.sh; 
 
 install_mars_rover: mars_rover control
