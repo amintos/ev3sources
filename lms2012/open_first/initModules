@@ -1,0 +1,3 @@
+insmod /home/root/lms2012/sys/mod/d_pwm.ko
+/home/root/motor_control stop
+insmod /home/root/lms2012/sys/mod/d_sound.ko

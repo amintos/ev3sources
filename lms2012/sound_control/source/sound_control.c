@@ -13,6 +13,8 @@
 #include <sys/ioctl.h>
 #include <time.h>
 
+#define VOLUME 10
+
 #define STEP_SIZE_TABLE_ENTRIES 89
 #define INDEX_TABLE_ENTRIES     16
 
@@ -457,9 +459,9 @@ int main(int argc, char** argv) {
     int i;
     cSoundInit();
     for(i = 0; i < 15; i++) {
-        cSoundEntry(TONE, 100, NULL, 720, 100);
+        cSoundEntry(TONE, VOLUME, NULL, 720, 100);
         msleep(100);
-        cSoundEntry(TONE, 100, NULL, 780, 100);
+        cSoundEntry(TONE, VOLUME, NULL, 780, 100);
         msleep(100);
     }
 

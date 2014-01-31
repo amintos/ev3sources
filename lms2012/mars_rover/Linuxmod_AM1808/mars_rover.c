@@ -104,7 +104,7 @@ int motor_command(int command) {
 	/* last parameter: 1 -> wait until execution has finished, 0 go ahead without waiting*/
 	/* returns 0 if usermode process was started successfully, errorvalue otherwise*/
 	/* no possiblity to get return value of usermode process*/
-	ret = call_usermodehelper("/home/root/motor_control", argv, envp, UMH_NO_WAIT);
+	ret = call_usermodehelper("/home/root/motor_control", argv, envp, 1);
 	if (ret != 0) {
 		printk("Error in call to usermodehelper: %i\n", ret);
         return 0;
@@ -122,7 +122,7 @@ int sound_command(void) {
 	/* last parameter: 1 -> wait until execution has finished, 0 go ahead without waiting*/
 	/* returns 0 if usermode process was started successfully, errorvalue otherwise*/
 	/* no possiblity to get return value of usermode process*/
-	ret = call_usermodehelper("/home/root/sound_control", argv, envp, UMH_NO_WAIT);
+	ret = call_usermodehelper("/home/root/sound_control", argv, envp, UMH_WAIT_EXEC);
 	if (ret != 0) {
 		printk("Error in call to usermodehelper: %i\n", ret);
         return 0;
@@ -168,6 +168,7 @@ int threadLow_fn(void* params) {
     sched_setscheduler(threadLow, SCHED_FIFO, &priorityLow); 
 
     counter = 0;
+    ssleep_range(2, 2);
     while(true) {
         counter += 1;
         if(stopFlag == 1) {
@@ -207,6 +208,7 @@ int threadMiddle_fn(void* params) {
 	sched_setscheduler(threadMiddle, SCHED_FIFO, &priorityMiddle); 
 
     counter = 0;
+    ssleep_range(2, 2);
     while(true) {
         counter += 1;
         if(stopFlag == 1) {
@@ -241,8 +243,7 @@ int threadHigh_fn(void* params) {
     priorityHigh.sched_priority = MOTOR_CONTROL_PRIORITY;
     sched_setscheduler(threadHigh, SCHED_FIFO, &priorityHigh); 
 
-    /*
-    deltaSum = 0;
+    /*deltaSum = 0;
     printk("Start da loopa!\n");
     now_timespec = current_kernel_time();
     usleep_range(2000, 2000);
@@ -272,6 +273,7 @@ int threadHigh_fn(void* params) {
         deltaNs = ktime_to_ns(now_ktime) - ktime_to_ns(last_ktime);
         if(deltaNs > (MOTOR_CONTROL_PERIOD_MS*2*nsecPerMsec)) {
             motor_command(MOTOR_CMD_STOP);
+            sound_command();
 
             printk("PANIC in %d with %llu!!\n", counter,
                                                 deltaNs);
@@ -285,7 +287,6 @@ int threadHigh_fn(void* params) {
         mutex_unlock(&sensorMutex);
         if(sensorResult > 4) {
             motor_command(MOTOR_CMD_STOP);
-            sound_command();
         }
         
         /* Put yourself to sleep */
@@ -307,14 +308,13 @@ int thread_init (void) {
 	char middleThreadName[13]= "threadMiddle";
 	char highThreadName[18]= "threadMotorControl";
 
+	motor_command(MOTOR_CMD_START);
+
 	printk("Mars Rover build: ");
 	printk(__DATE__);
 	printk(" ");
 	printk(__TIME__);
 	printk("\n");
-
-	motor_command(MOTOR_CMD_STOP);
-	motor_command(MOTOR_CMD_START);
 
 	threadLow = kthread_create(
 					threadLow_fn,
