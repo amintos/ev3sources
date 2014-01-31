@@ -15,21 +15,23 @@
 #include <linux/module.h>
 
 #define MOTOR_CONTROL_PERIOD_MS 10
-#define COMPRESSION_PERIOD_S 5
-#define MAINTENANCE_PERIOD_MS 500
+#define COMPRESSION_PERIOD_S 1
+#define MAINTENANCE_PERIOD_MS 50
 
-#define COMPRESSION_SPIN_MSEC 500
-#define MAINTENANCE_SPIN_MSEC 3
+#define COMPRESSION_SPIN_MSEC 50
+#define MAINTENANCE_SPIN_MSEC 7 
 
-#define MOTOR_CONTROL_PRIORITY 1
-#define COMPRESSION_PRIORITY 102
-#define MAINTENANCE_PRIORITY 105
+#define MOTOR_CONTROL_PRIORITY 70
+#define COMPRESSION_PRIORITY 50 
+#define MAINTENANCE_PRIORITY 20 
 
 static struct task_struct   *threadLow, 
                             *threadMiddle, 
                             *threadHigh;
 
 DEFINE_MUTEX(sensorMutex);
+
+int stopFlag = 0;
 
 const unsigned long msecPerSecond = 1000;
 const unsigned long usecPerMsec = 1000;
@@ -72,7 +74,7 @@ void ssleep_range(unsigned long min, unsigned long max)
 
     kmin = ktime_set(min,0);
     delta = (max - min) * 1000 * nsecPerMsec;
-    return schedule_hrtimeout_range(&kmin, delta, HRTIMER_MODE_REL);
+    schedule_hrtimeout_range(&kmin, delta, HRTIMER_MODE_REL);
 }
 
 /**
@@ -150,7 +152,7 @@ int threadLow_fn(void* params) {
     counter = 0;
     while(true) {
         counter += 1;
-        if(counter == 60) {
+        if(stopFlag == 1) {
             break;
         }
     	now = gettimeNsec();
@@ -163,14 +165,14 @@ int threadLow_fn(void* params) {
         mutex_unlock(&sensorMutex);
 
         //printk("Finished Maintenance: Everything looks good.\n");
-        //printk("Maintenance took: %lu nsec.\n", gettimeNsec() - now);
+        printk("Maintenance took: %lu nsec.\n", gettimeNsec() - now);
         
         /* Put yourself to sleep */
         usleep_range(MAINTENANCE_PERIOD_MS*usecPerMsec,
                      MAINTENANCE_PERIOD_MS*usecPerMsec);
 
     }
-    //printk("All maintenance checks checked.\n");
+    printk("All maintenance checks checked.\n");
          
 	return 0;
 }
@@ -189,7 +191,7 @@ int threadMiddle_fn(void* params) {
     counter = 0;
     while(true) {
         counter += 1;
-        if(counter == 5) {
+        if(stopFlag == 1) {
             break;
         }
     	now = gettimeNsec();
@@ -198,14 +200,14 @@ int threadMiddle_fn(void* params) {
 	    spin_for(COMPRESSION_SPIN_MSEC);
 
         //printk("Finished compressing sensordata.\n");
-        //printk("Compression took: %lu msec.\n", gettimeNsec() - now);
+        printk("Compression took: %lu msec.\n", gettimeNsec() - now);
         
         /* Put yourself to sleep */
         ssleep_range(COMPRESSION_PERIOD_S, 
                      COMPRESSION_PERIOD_S);
 
     }
-    //printk("Everything was compressed nicely.\n");
+    printk("Everything was compressed nicely.\n");
 
 	return 0;
 }
@@ -269,6 +271,7 @@ int threadHigh_fn(void* params) {
         /* Put yourself to sleep */
         usleep_range(MOTOR_CONTROL_PERIOD_MS*usecPerMsec, MOTOR_CONTROL_PERIOD_MS*usecPerMsec);
     }
+    stopFlag = 1;
     deltaNs = ktime_to_ns(ktime_get()) - ktime_to_ns(start_ktime);
     printk("Mission successful after %d cycles and %llu seconds!\n", 
             counter,
@@ -283,6 +286,12 @@ int thread_init (void) {
 	char lowThreadName[17]="threadMaintenance";
 	char middleThreadName[13]= "threadMiddle";
 	char highThreadName[18]= "threadMotorControl";
+
+	printk("Mars Rover build: ");
+	printk(__DATE__);
+	printk(" ");
+	printk(__TIME__);
+	printk("\n");
 
 	motor_command(MOTOR_CMD_STOP);
 	motor_command(MOTOR_CMD_START);
