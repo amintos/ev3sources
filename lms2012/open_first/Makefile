@@ -11,12 +11,9 @@ default: help
 
 include rules.mk
 
-#
-# Test programs
-#
-
-test:
-	$(MAKE) -I=$(KERNEL)/usr/include -o test ./hello_world/foo.c -lrt
+init:
+	unlink ~/projects;
+	ln -s /home/patrick/Documents/studium/eos/projects ~/projects;
 
 #
 # lms2012 program.
@@ -44,16 +41,19 @@ LIBS = c_com c_input c_memory c_output c_sound c_ui
 control:
 	$(MAKE) -C $(BASE)/motor_control/Linux_$(ARCH)
 	$(MAKE) -C $(BASE)/sensor_control/Linux_$(ARCH)
+	$(MAKE) -C $(BASE)/sound_control/Linux_$(ARCH)
 
 control.clean: $(LIBS:%=%.clean)
 	$(MAKE) -C $(BASE)/motor_control/Linux_$(ARCH) clean uninstall
 	$(MAKE) -C $(BASE)/sensor_control/Linux_$(ARCH) clean uninstall
+	$(MAKE) -C $(BASE)/sound_control/Linux_$(ARCH) clean uninstall
 
 .PHONY: motor_control motor_control.clean $(LIBS:%=%.clean)
 
 #
 # lms2012 modules.
 #
+
 MODULES = mars_rover d_analog d_bt d_iic d_power d_pwm d_sound d_uart d_ui  \
 	  test_prioinv d_usbdev d_usbhost
 
@@ -83,7 +83,7 @@ programs.clean:
 # Kernel.
 #
 
-kernel: uImage
+kernel: uImage init
 
 $(KERNEL)/.config: $(KERNEL_CONF)
 	cp $< $@
@@ -147,11 +147,13 @@ doc.clean:
 build_image: kernel modules
 	sudo ./make_image.sh; 
 
-install_mars_rover: mars_rover control
+install_mars_rover: mars_rover control test_prioinv
 	./mounty.sh; \
     sudo cp ../motor_control/Linux_AM1808/motor_control /media/LMS2012_EXT/home/root; \
     sudo cp ../sensor_control/Linux_AM1808/sensor_control /media/LMS2012_EXT/home/root; \
+    sudo cp ../sound_control/Linux_AM1808/sound_control /media/LMS2012_EXT/home/root; \
     sudo cp ../mars_rover/Linuxmod_AM1808/mars_rover.ko /media/LMS2012_EXT/home/root; \
+    sudo cp ../test_prioinv/Linuxmod_AM1808/test_prioinv.ko /media/LMS2012_EXT/home/root; \
 	./umounty.sh;
 
 install_kernel: build_image
@@ -159,7 +161,7 @@ install_kernel: build_image
 	sudo ./update_sdcard.sh; \
     sudo cp ./lmsInit /media/LMS2012_EXT/etc/init.d/lms; \
     sudo chmod a+rwx /media/LMS2012_EXT/etc/init.d/lms; \
-	./umounty.sh;
+    ./umounty.sh; 
 
 #
 # Misc.

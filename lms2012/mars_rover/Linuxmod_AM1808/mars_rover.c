@@ -14,12 +14,12 @@
 
 #include <linux/module.h>
 
-#define MOTOR_CONTROL_PERIOD_MS 10
-#define COMPRESSION_PERIOD_S 1
-#define MAINTENANCE_PERIOD_MS 50
+#define MOTOR_CONTROL_PERIOD_MS 20
+#define COMPRESSION_PERIOD_MS 100
+#define MAINTENANCE_PERIOD_MS 30
 
 #define COMPRESSION_SPIN_MSEC 50
-#define MAINTENANCE_SPIN_MSEC 7 
+#define MAINTENANCE_SPIN_MSEC 15 
 
 #define MOTOR_CONTROL_PRIORITY 70
 #define COMPRESSION_PRIORITY 50 
@@ -104,7 +104,25 @@ int motor_command(int command) {
 	/* last parameter: 1 -> wait until execution has finished, 0 go ahead without waiting*/
 	/* returns 0 if usermode process was started successfully, errorvalue otherwise*/
 	/* no possiblity to get return value of usermode process*/
-	ret = call_usermodehelper("/home/root/motor_control", argv, envp, UMH_WAIT_EXEC);
+	ret = call_usermodehelper("/home/root/motor_control", argv, envp, UMH_NO_WAIT);
+	if (ret != 0) {
+		printk("Error in call to usermodehelper: %i\n", ret);
+        return 0;
+	}
+
+    return 1;
+}
+
+int sound_command(void) {
+
+	int ret = 0;
+	char *argv[] = {"/home/root/sound_control", NULL, NULL };
+	char *envp[] = {"HOME=/", "PATH=/sbin:/usr/sbin:/bin:/usr/bin", NULL };
+
+	/* last parameter: 1 -> wait until execution has finished, 0 go ahead without waiting*/
+	/* returns 0 if usermode process was started successfully, errorvalue otherwise*/
+	/* no possiblity to get return value of usermode process*/
+	ret = call_usermodehelper("/home/root/sound_control", argv, envp, UMH_NO_WAIT);
 	if (ret != 0) {
 		printk("Error in call to usermodehelper: %i\n", ret);
         return 0;
@@ -197,14 +215,14 @@ int threadMiddle_fn(void* params) {
     	now = gettimeNsec();
 
         /* Actual action */
-	    spin_for(COMPRESSION_SPIN_MSEC);
+	spin_for(COMPRESSION_SPIN_MSEC);
 
         //printk("Finished compressing sensordata.\n");
         printk("Compression took: %lu msec.\n", gettimeNsec() - now);
         
         /* Put yourself to sleep */
-        ssleep_range(COMPRESSION_PERIOD_S, 
-                     COMPRESSION_PERIOD_S);
+        usleep_range(COMPRESSION_PERIOD_MS*usecPerMsec, 
+                     COMPRESSION_PERIOD_MS*usecPerMsec);
 
     }
     printk("Everything was compressed nicely.\n");
@@ -257,7 +275,8 @@ int threadHigh_fn(void* params) {
 
             printk("PANIC in %d with %llu!!\n", counter,
                                                 deltaNs);
-            //return 1;
+	    stopFlag = 1;
+            return 1;
         } 
 
         /* Actual action */
@@ -266,6 +285,7 @@ int threadHigh_fn(void* params) {
         mutex_unlock(&sensorMutex);
         if(sensorResult > 4) {
             motor_command(MOTOR_CMD_STOP);
+            sound_command();
         }
         
         /* Put yourself to sleep */
