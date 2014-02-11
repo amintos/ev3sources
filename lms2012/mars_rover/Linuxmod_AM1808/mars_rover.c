@@ -14,6 +14,7 @@
 
 #include <linux/module.h>
 
+#define WATCHDOG_PERIOD_MS 5 
 #define MOTOR_CONTROL_PERIOD_MS 20
 #define COMPRESSION_PERIOD_MS 100
 #define MAINTENANCE_PERIOD_MS 30
@@ -21,17 +22,20 @@
 #define COMPRESSION_SPIN_MSEC 50
 #define MAINTENANCE_SPIN_MSEC 15 
 
+#define WATCHDOG_PRIORITY 90
 #define MOTOR_CONTROL_PRIORITY 70
 #define COMPRESSION_PRIORITY 50 
 #define MAINTENANCE_PRIORITY 20 
 
 static struct task_struct   *threadLow, 
                             *threadMiddle, 
-                            *threadHigh;
+                            *threadHigh,
+                            *threadWatchdog;
 
 DEFINE_MUTEX(sensorMutex);
 
 int stopFlag = 0;
+ktime_t last_motor_control_ktime;
 
 const unsigned long msecPerSecond = 1000;
 const unsigned long usecPerMsec = 1000;
@@ -104,7 +108,7 @@ int motor_command(int command) {
 	/* last parameter: 1 -> wait until execution has finished, 0 go ahead without waiting*/
 	/* returns 0 if usermode process was started successfully, errorvalue otherwise*/
 	/* no possiblity to get return value of usermode process*/
-	ret = call_usermodehelper("/home/root/motor_control", argv, envp, 1);
+	ret = call_usermodehelper("/home/root/motor_control", argv, envp, UMH_WAIT_EXEC);
 	if (ret != 0) {
 		printk("Error in call to usermodehelper: %i\n", ret);
         return 0;
@@ -168,12 +172,9 @@ int threadLow_fn(void* params) {
     sched_setscheduler(threadLow, SCHED_FIFO, &priorityLow); 
 
     counter = 0;
-    ssleep_range(2, 2);
-    while(true) {
+    ssleep_range(3, 3);
+    while(true && stopFlag == 0) {
         counter += 1;
-        if(stopFlag == 1) {
-            break;
-        }
     	now = gettimeNsec();
 
         /* Actual action */
@@ -208,12 +209,9 @@ int threadMiddle_fn(void* params) {
 	sched_setscheduler(threadMiddle, SCHED_FIFO, &priorityMiddle); 
 
     counter = 0;
-    ssleep_range(2, 2);
-    while(true) {
+    ssleep_range(3, 3);
+    while(true && stopFlag == 0) {
         counter += 1;
-        if(stopFlag == 1) {
-            break;
-        }
     	now = gettimeNsec();
 
         /* Actual action */
@@ -243,43 +241,15 @@ int threadHigh_fn(void* params) {
     priorityHigh.sched_priority = MOTOR_CONTROL_PRIORITY;
     sched_setscheduler(threadHigh, SCHED_FIFO, &priorityHigh); 
 
-    /*deltaSum = 0;
-    printk("Start da loopa!\n");
-    now_timespec = current_kernel_time();
-    usleep_range(2000, 2000);
-    for(i = 0; i < 1000; i++) {
-        last_timespec = now_timespec;
-        now_timespec = current_kernel_time();
-        diff_timespec(&tmp_timespec, last_timespec, now_timespec);
-        deltaSum += timespecToNsec(tmp_timespec);
-
-        now_timespec = current_kernel_time();
-        usleep_range(2000, 2000);
-    }
-    printk("RESULT!!!!! %lld\n", deltaSum);*/
-
-    start_ktime = ktime_get();
     counter = 0;
-    now_ktime = ktime_get(); 
-    while(true) {
+    while(true && stopFlag == 0) {
         counter += 1;
         if(counter == 6100) {
             break;
         }
 
         /* Check if woken up early enough */
-        last_ktime = now_ktime;
-        now_ktime = ktime_get(); 
-        deltaNs = ktime_to_ns(now_ktime) - ktime_to_ns(last_ktime);
-        if(deltaNs > (MOTOR_CONTROL_PERIOD_MS*2*nsecPerMsec)) {
-            motor_command(MOTOR_CMD_STOP);
-            sound_command();
-
-            printk("PANIC in %d with %llu!!\n", counter,
-                                                deltaNs);
-	    stopFlag = 1;
-            return 1;
-        } 
+        last_motor_control_ktime = ktime_get(); 
 
         /* Actual action */
         mutex_lock(&sensorMutex);
@@ -292,11 +262,49 @@ int threadHigh_fn(void* params) {
         /* Put yourself to sleep */
         usleep_range(MOTOR_CONTROL_PERIOD_MS*usecPerMsec, MOTOR_CONTROL_PERIOD_MS*usecPerMsec);
     }
-    stopFlag = 1;
-    deltaNs = ktime_to_ns(ktime_get()) - ktime_to_ns(start_ktime);
-    printk("Mission successful after %d cycles and %llu seconds!\n", 
-            counter,
-            deltaNs);
+    if(stopFlag == 1) {
+        printk("Stopped mission at %d!!\n", counter);
+    } else {
+        deltaNs = ktime_to_ns(ktime_get()) - ktime_to_ns(start_ktime);
+        printk("Mission successful after %d cycles and %llu seconds!\n", 
+                counter,
+                deltaNs);
+        stopFlag = 1;
+    }
+
+	return 0;
+}
+
+int threadWatchdog_fn(void* params) {
+
+    struct sched_param priorityHigh;
+    ktime_t now_ktime, last_ktime, start_ktime, end_ktime;
+    unsigned long long deltaSum, sleepTimeDelta, deltaNs;
+
+    priorityHigh.sched_priority = WATCHDOG_PRIORITY;
+    sched_setscheduler(threadHigh, SCHED_FIFO, &priorityHigh); 
+    
+    // To avoid inconsistent state at startup
+    last_motor_control_ktime = ktime_get(); 
+    now_ktime = ktime_get(); 
+    while(true && stopFlag == 0) {
+
+        /* Check if woken up early enough */
+        last_ktime = last_motor_control_ktime;
+        now_ktime = ktime_get(); 
+        deltaNs = ktime_to_ns(now_ktime) - ktime_to_ns(last_ktime);
+        if(deltaNs > (MOTOR_CONTROL_PERIOD_MS*2*nsecPerMsec)) {
+	        stopFlag = 1;
+            motor_command(MOTOR_CMD_STOP);
+            sound_command();
+
+            printk("PANIC with %llu!!\n", deltaNs);
+            return 1;
+        } 
+        
+        /* Put yourself to sleep */
+        usleep_range(WATCHDOG_PERIOD_MS*usecPerMsec, WATCHDOG_PERIOD_MS*usecPerMsec);
+    }
 
 	return 0;
 }
@@ -307,6 +315,9 @@ int thread_init (void) {
 	char lowThreadName[17]="threadMaintenance";
 	char middleThreadName[13]= "threadMiddle";
 	char highThreadName[18]= "threadMotorControl";
+	char watchdogThreadName[9]= "watchdog";
+
+	printk("Mars Rover build: ");
 
 	motor_command(MOTOR_CMD_START);
 
@@ -336,6 +347,13 @@ int thread_init (void) {
 					highThreadName);
 	if(!IS_ERR(threadHigh)) {
 		wake_up_process(threadHigh);
+	}
+	threadWatchdog = kthread_create(
+					threadWatchdog_fn,
+					NULL,
+					watchdogThreadName);
+	if(!IS_ERR(threadWatchdog)) {
+		wake_up_process(threadWatchdog);
 	}
 
 	return 0;
